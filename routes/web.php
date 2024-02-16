@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PeliculaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('peliculas', PeliculaController::class);
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    redirect()->route('peliculas.index');
+})->name('inicio');
+
