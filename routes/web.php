@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PeliculaController;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('peliculas', PeliculaController::class);
 
 Route::get('/', function () {
-    return redirect()->route('peliculas.index');
+    $usuarios = Usuario::get();
+    return view('login', compact('usuarios'));
 })->name('inicio');
 
