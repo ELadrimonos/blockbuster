@@ -9,7 +9,6 @@
             </a>
             <h1>{{$pelicula->title}}</h1>
             <h2>{{$pelicula->director}}</h2>
-            <a class="btn btn-warning" href="{{route('peliculas.edit', $pelicula->id)}}">Modificar</a>
         </div>
 
     @endforeach

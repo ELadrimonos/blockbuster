@@ -29,7 +29,9 @@ class PeliculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelicula = new Pelicula();
+        $this->escribirDatos($request, $pelicula);
+        return redirect()->route('peliculas.show', $pelicula->id);
     }
 
     /**
@@ -37,7 +39,8 @@ class PeliculaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pelicula = Pelicula::findOrFail($id);
+        return view('peliculas.detalles', compact('pelicula'));
     }
 
     /**
@@ -56,11 +59,8 @@ class PeliculaController extends Controller
     public function update(Request $request, string $id)
     {
         $pelicula = Pelicula::findOrFail($id);
-        $pelicula->title = $request->get('title');
-        $pelicula->rented = $request->get('rented');
-        $pelicula->poster = $request->get('poster');
-        $pelicula->year = $request->get('year');
-        $pelicula->director = $request->get('director');
+        $this->escribirDatos($request, $pelicula);
+        return redirect()->route('peliculas.show', $id);
 
     }
 
@@ -69,7 +69,37 @@ class PeliculaController extends Controller
      */
     public function destroy(string $id)
     {
-       Pelicula::findOrFail($id)->delete();
-	return redirect()->route('peliculas.index');
+        Pelicula::findOrFail($id)->delete();
+	    return redirect()->route('peliculas.index');
+    }
+
+    public function buscarPorDirector()
+    {
+        $peliculas = Pelicula::get();
+        return view('peliculas.busqueda', compact('peliculas'));
+
+    }
+
+    public function filtrarDirector(Request $request)
+    {
+        $peliculas = Pelicula::get();
+        $peliculasFiltradas = array();
+        foreach ($peliculas as $pelicula){
+            if ($pelicula->director == $request->get('nombre'))
+                $peliculasFiltradas[] = $pelicula;
+        }
+        $peliculas = $peliculasFiltradas;
+        return view('peliculas.listado', compact('peliculas'));
+    }
+    public function escribirDatos(Request $request, $pelicula): void
+    {
+        $pelicula->title = $request->get('title');
+        $pelicula->rented = $request->get('rented') === 'on' ? 1 : 0;
+        $pelicula->poster = $request->get('poster');
+        $pelicula->year = $request->get('year');
+        $pelicula->director = $request->get('director');
+        $pelicula->protagonist = $request->get('protagonist');
+        $pelicula->synopsis = $request->get('synopsis');
+        $pelicula->save();
     }
 }

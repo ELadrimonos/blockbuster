@@ -22,3 +22,5 @@ Route::get('/', function () {
     return view('login', compact('usuarios'));
 })->name('inicio');
 
+Route::get('libros/busqueda', [PeliculaController::class, 'buscarPorDirector'])->name('peliculas.buscar');
+Route::post('libros/filtrar', [PeliculaController::class, 'filtrarDirector'])->name('peliculas.filtrar');

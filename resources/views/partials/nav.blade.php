@@ -6,7 +6,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="{{route('peliculas.index')}}" class="nav-link active" aria-current="page">
+            <a href="{{route('peliculas.index')}}" class="nav-link text-white" aria-current="page">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                 Home
             </a>
@@ -18,21 +18,15 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{{route('peliculas.buscar')}}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                Orders
+                Filtrar por director
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                Products
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                Customers
+            <a href="/api/peliculas" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                API
             </a>
         </li>
     </ul>
