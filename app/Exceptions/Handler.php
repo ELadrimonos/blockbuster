@@ -24,7 +24,10 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            switch ($e->getCode()){
+                case 404: return "NO ENCONTRADO";
+                case 500: return "ERROR 500";
+            }
         });
     }
 }
