@@ -12,9 +12,9 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{{route('peliculas.create')}}" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                Dashboard
+                Dar de alta pelicula
             </a>
         </li>
         <li>

@@ -21,7 +21,7 @@ class PeliculaController extends Controller
      */
     public function create()
     {
-        //
+        return view('peliculas.formulario');
     }
 
     /**
@@ -45,7 +45,9 @@ class PeliculaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pelicula = Pelicula::findOrFail($id);
+        return view('peliculas.formulario', compact('pelicula'));
+
     }
 
     /**
@@ -53,7 +55,13 @@ class PeliculaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pelicula = Pelicula::findOrFail($id);
+        $pelicula->title = $request->get('title');
+        $pelicula->rented = $request->get('rented');
+        $pelicula->poster = $request->get('poster');
+        $pelicula->year = $request->get('year');
+        $pelicula->director = $request->get('director');
+
     }
 
     /**
@@ -61,6 +69,7 @@ class PeliculaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+       Pelicula::findOrFail($id)->delete();
+	return redirect()->route('peliculas.index');
     }
 }

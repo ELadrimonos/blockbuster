@@ -17,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::resource('peliculas', PeliculaController::class);
 
 Route::get('/', function () {
-    redirect()->route('peliculas.index');
+    return redirect()->route('peliculas.index');
 })->name('inicio');
 
